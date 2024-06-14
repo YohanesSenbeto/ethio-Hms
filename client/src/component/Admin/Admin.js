@@ -42,7 +42,7 @@ class Admin extends Component {
       password: this.state.password
     }
 
-    // console.log(emp)
+    console.log(emp);
 
     axios.post('/admin/register', emp)
       .then(res => {
