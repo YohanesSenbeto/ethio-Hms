@@ -27,22 +27,26 @@ class EmployeeLogin extends Component {
       password: this.state.password
     }
 
-    axios.post('/admin/login', {
-      email: user.email,
-      password: user.password
-    }).then(response => {
-      if(response.data === "Email not found") return "Email not found";
-      
-      sessionStorage.setItem('usertoken', response.data)
-      return response.data
-    }).then(res => {
-      if(res !== "Email not found") {
-        sessionStorage.setItem('userData', JSON.stringify(user));
-        this.props.history.push('/employee/login/employee_home');
-      } 
-    }).catch(err => {
-      console.log(err)
-    })
+    axios
+      .post("/employee/login", {
+        email: user.email,
+        password: user.password,
+      })
+      .then((response) => {
+        if (response.data === "Email not found") return "Email not found";
+
+        sessionStorage.setItem("usertoken", response.data);
+        return response.data;
+      })
+      .then((res) => {
+        if (res !== "Email not found") {
+          sessionStorage.setItem("userData", JSON.stringify(user));
+          this.props.history.push("/employee/login/employee_home");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {

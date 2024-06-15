@@ -59,12 +59,19 @@ class Employee extends Component {
       patient_id: this.state.patient_id,
       doctor_id: this.state.doctor_id
     }
+    
 
-    Axios.post('/admin/assign_doctor', ass_doc)
-      .then(response => {
+    Axios.post("/admin/assign_doctor", ass_doc)
+      .then((response) => {
+        if (response) {
+          alert("doctor assigned successfully");
+        } else {
+          alert("error assigning doc");
+        }
+
         return response.data;
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   onSubmit2(e) {
